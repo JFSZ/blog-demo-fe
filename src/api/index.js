@@ -28,7 +28,8 @@ function apiAxios (method, path, params, success, failure) {
     params: qs.stringify(params),
     withCredentials: true, // 允许服务器使用cookies
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': ''
     }
   })
     .then(res => {
