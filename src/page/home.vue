@@ -85,29 +85,10 @@ export default{
     }
   },
   mounted: function () {
-    var _this = this
-    // 判断是否是管理员
-    /* _this.$api.post('user/isAdmin', null, resp => {
-      if (resp.code === 0) {
-        for (var i = 0; i <= this.$router.options.routes.length; i++) {
-          console.log(this.$router.options.routes[i])
-          if (this.$router.options.routes[i].hidden !== undefined) {
-            console.log(this.$router.options.routes[i].hidden)
-            this.$router.options.routes[i].hidden = !this.$router.options.routes[i].hidden
-          }
-        }
-      }
-    }) */
-    // 获取当前登录人姓名
-    _this.$api.post('user/currentUserName', null, function (result) {
-      _this.currentUserName = result.data.nickname
-    }, () => {
-      _this.currentUserName = '游客'
-    })
   },
   data () {
     return {
-      currentUserName: ''
+      currentUserName: this.$store.state.userInfo.nickname
     }
   }
 }

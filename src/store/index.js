@@ -7,13 +7,24 @@ const store = new Vuex.Store({
 
   },
   state: {
-    token: ''
+    token: '',
+    userInfo: ''
   },
   mutations: {
-
+    SET_TOKEN: (state, token) => {
+      state.token = token
+    },
+    SET_USER_INFO: (state, userInfo) => {
+      state.userInfo = userInfo
+    }
   },
   actions: {
-
+    getToken ({ commit }, token) {
+      commit('SET_TOKEN', token)
+    },
+    getUserInfo ({commit}, userInfo) {
+      commit('SET_USER_INFO', userInfo)
+    }
   },
   getters
 })

@@ -2,11 +2,11 @@ import axios from 'axios'
 import qs from 'qs'
 import baseInfo from '../config/index.js'
 import router from '../router'
+import store from '../store'
 import {
   Message,
   MessageBox
 } from 'element-ui'
-
 let root = '/api'
 /*
   接口处理函数
@@ -29,7 +29,7 @@ function apiAxios (method, path, params, success, failure) {
     withCredentials: true, // 允许服务器使用cookies
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': ''
+      'Authorization': store.state.token
     }
   })
     .then(res => {
@@ -48,7 +48,7 @@ function apiAxios (method, path, params, success, failure) {
               type: 'warning'
             }
           ).then(() => {
-            router.push({path: '/'})
+            router.push({path: '/login'})
           })
         } else if (returnFlag === 4) {
           MessageBox.confirm(
@@ -59,7 +59,7 @@ function apiAxios (method, path, params, success, failure) {
               type: 'warning'
             }
           ).then(() => {
-            router.push({path: '/'})
+            router.push({path: '/login'})
           })
         } else {
           if (failure) {
@@ -71,7 +71,7 @@ function apiAxios (method, path, params, success, failure) {
         // 处理404问题 路径不对
       } else if (Object.is(status, 405)) {
         // 处理404问题 路径不对
-        router.push({path: '/'})
+        router.push({path: '/login'})
       } else if (Object.is(status, 501)) {
         // 处理501问题 服务器问题
       }
@@ -113,7 +113,7 @@ function uploadImg (method, path, params, success, failure) {
               type: 'warning'
             }
           ).then(() => {
-            router.push({path: '/'})
+            router.push({path: '/login'})
           })
         } else {
           // 请求失败

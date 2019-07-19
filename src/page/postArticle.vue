@@ -125,7 +125,7 @@ export default {
             }
           } else if (Object.is(code, 2)) {
             _this.$message({type: 'error', message: resp.message})
-            _this.$router.replace({path: '/'})
+            _this.$router.replace({path: '/login'})
           }
         } else {
           _this.$message({type: 'error', message: state === 0 ? '保存失败!' : '发布失败!'})

@@ -42,6 +42,10 @@ export default{
       this.$api.post('login', param, result => {
         if (result != null) {
           let code = result.code
+          let token = result.data.token
+          let userInfo = result.data.userInfo
+          _this.$store.dispatch('getToken', token)
+          _this.$store.dispatch('getUserInfo', userInfo)
           if (Object.is(code, 0)) {
             this.$confirm('欢迎登录博客系统!', '温馨提示', {
               confirmButtonText: '确定',

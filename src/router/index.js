@@ -9,12 +9,18 @@ import UserMana from '../page/usermanage'
 import CateMana from '../page/catemanage'
 import DataCharts from '../page/datacharts'
 import Unauthorized from '@/page/unauthorized.vue'
+import Index from '@/page/index.vue'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
+      name: '首页',
+      component: Index
+    },
+    {
+      path: '/login',
       name: '登录',
       component: Login
     },
