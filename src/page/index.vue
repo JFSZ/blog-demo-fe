@@ -7,8 +7,8 @@
       </div>
     </el-header>
     <el-main>
-      <div>
-        <a></a>
+      <div v-for="(item, index) in articleList" :key="index">
+        <a @click="clickArticle(item.id)">{{item.title}}</a>
       </div>
     </el-main>
     <el-footer>
@@ -34,11 +34,21 @@ export default {
     getArticleList () {
       let _this = this
       _this.$api.post('/article/getAllArticle', null, resp => {
-        console.log(resp)
+        if (resp != null) {
+          let code = resp.code
+          if (Object.is(code, 0)) {
+            _this.articleList = resp.data
+          }
+        }
       },
       resp => {
         console.log(resp)
       })
+    },
+    clickArticle (id) {
+      console.log(id)
+      let _this = this
+      _this.$router.push({path: '/blogDetail', query: {aid: id}})
     }
   }
 }
